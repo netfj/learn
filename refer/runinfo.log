@@ -1,0 +1,10 @@
+logging_set.py(36)log_config[INFO]2019-02-27 12:45:13
+ 日志风格：simplify  日志等级：10.DEBUG  文件名：runinfo.log
+ 模块  (行号)  模块或函数名  [等级]  信息内容
+logging_set.py(44)test[DEBUG]This is a debug log.
+logging_set.py(45)test[INFO]This is a info log.
+logging_set.py(46)test[WARNING]This is a warning log.
+logging_set.py(47)test[ERROR]This is a error log.
+logging_set.py(48)test[CRITICAL]This is a critical log.
+logging_set.py(51)<module>[INFO]Test: 传递一个参数试试
+logging_set.py(52)<module>[ERROR]Test: 传递一个参数试试
