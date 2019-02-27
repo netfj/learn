@@ -7,7 +7,10 @@ time:   2019/2/27.20:00
 """
 
 # import win32con,win32api
-# win32api.MessageBox(0,"Hello PYwin32","MessageBox",win32con.MB_OK | win32con.MB_ICONWARNING)
+# a=win32api.MessageBox(0,"Hello PYwin32","MessageBox",win32con.MB_OK | win32con.MB_ICONWARNING)
+# print(a)
+# a=win32api.MessageBox(0,"Hello PYwin32","MessageBox",win32con.MB_YESNO | win32con.MB_ICONWARNING)
+# print(a)
 
 # -*- encoding:utf-8 -*-
 ##############################
