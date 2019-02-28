@@ -13,8 +13,7 @@ def log_config(filename='runinfo.log',
                    "内容:%(message)s\n"
     DATE_FORMAT_1 = "%Y.%m.%d.%H:%M:%S%p"
 
-    LOG_FORMAT_2 = "%(filename)s(%(lineno)d)%(funcName)s" \
-                   "[%(levelname)s]%(message)s"
+    LOG_FORMAT_2 = "%(filename)s(%(lineno)d)%(funcName)s[%(levelname)s]%(message)s"
     DATE_FORMAT_2 = "%m.%d.%H:%M"
 
     level_grade_all = {10: '10.DEBUG', 20: '20.INFO', 30: '30.WARNING', 40: '40.ERROR', 50: '50.CRITICAL'}
