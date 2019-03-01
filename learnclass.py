@@ -2,7 +2,7 @@
 # @Info: learn a site class
 # @Author:Netfj@sina.com @File:learnclass.py.py @Time:2019/2/27 12:28
 
-import logging, time
+import logging, time, webbrowser,random
 
 logging.basicConfig(filename='runinfo.log',
                     level=logging.DEBUG,
@@ -15,8 +15,8 @@ class learn():
     y=0
     runstep_name = 'runstep.ini'
     site_name = 'www.baidu.com'
-    brower_path = 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
-    
+    brower = 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
+    webbrowser_register = 'web_reg_name'
 
     def __init__(self):
         pass
@@ -58,10 +58,17 @@ class learn():
 
     def brower(self, aru):
         self.debug('Set brower: ' + aru)
-        self.brower_path = aru
+        self.brower = aru
 
     def action(self, aru):
+        eval('self.'+aru)   #导入对应函数
         print(aru)
+
+    def opensite(self):
+        self.webbrowser_register = 'chrome' #'web_name'+str(random.randint(1,200000))
+        webbrowser.register(self.webbrowser_register, None, webbrowser.BackgroundBrowser(self.brower))
+        webbrowser.get(self.webbrowser_register).open(self.site_name, new=1, autoraise=True)
+        time.sleep(5)
 
 
 if __name__ == '__main__':
@@ -71,4 +78,4 @@ if __name__ == '__main__':
 
     print('====================')
     print(le.site_name)
-    print(le.brower_path)
+    print(le.brower)
