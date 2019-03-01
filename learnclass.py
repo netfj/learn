@@ -11,8 +11,8 @@ logging.basicConfig(filename='runinfo.log',
 
 
 class learn():
-    x=0
-    y=0
+    cursor_x=0
+    cursor_y=0
     runstep_name = 'runstep.ini'
     site_name = 'www.baidu.com'
     brower = 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
@@ -21,18 +21,15 @@ class learn():
     def __init__(self):
         pass
 
-    def read_runstep(self):
+    def run(self):
         with open(self.runstep_name) as f:
             t = f.readlines()
             m = len(t)
-        for i in range(11):
+        for i in range(26):
             item = t[i].strip('\n')     # 去除尾部的换行符
-
             p = item.find('#')          # 求 # 所在的位置
             if p>=0 : item = item[0:p]   # 去除 # 之后的字符
-
             item = item.strip()         # 去除两边字符串
-
             if item == '': continue
             item = item.split('=')
 
@@ -47,7 +44,23 @@ class learn():
 
     def debug(self,aru):
         logging.debug(aru)
-        print(aru)
+        # print(aru)
+
+    def x(self,aru):
+        self.cursor_x = int(aru)
+        logging.debug('x='+aru)
+
+    def y(self,aru):
+        self.cursor_y = int(aru)
+        logging.debug('y='+aru)
+
+    def setx(self, aru):
+        self.cursor_x = self.cursor_x + int(aru)
+        logging.debug('x=x+'+aru+' -->  x='+str(self.cursor_x))
+
+    def sety(self, aru):
+        self.cursor_y = self.cursor_y + int(aru)
+        logging.debug('y=y+'+aru+' -->  y='+str(self.cursor_y))
 
     def info(self,aru):
         logging.info(aru)
@@ -61,21 +74,30 @@ class learn():
         self.brower = aru
 
     def action(self, aru):
-        eval('self.'+aru)   #导入对应函数
-        print(aru)
+        eval('self.' + aru +'()')   #导入 action 对应函数
 
     def opensite(self):
-        self.webbrowser_register = 'chrome' #'web_name'+str(random.randint(1,200000))
+        self.debug('Open site: '+self.site_name )
+        self.webbrowser_register = 'web_name'+str(random.randint(1,200000))
         webbrowser.register(self.webbrowser_register, None, webbrowser.BackgroundBrowser(self.brower))
         webbrowser.get(self.webbrowser_register).open(self.site_name, new=1, autoraise=True)
+        self.debug('webbrowser.register: ' + self.webbrowser_register)
         time.sleep(5)
+
+    def mouse(self,aru):
+        eval('self.' + aru + '()')  # 导入 mouse 对应函数
+
+    def rightclick(self):
+        self.debug('right click ...')
+
+    def leftclick(self):
+        self.debug('left click ...')
+
+    def middleclick(self):
+        self.debug('middle click ...')
 
 
 if __name__ == '__main__':
-
     le = learn()
-    le.read_runstep()
-
-    print('====================')
-    print(le.site_name)
-    print(le.brower)
+    le.run()
+    print(le.cursor_x,le.cursor_y)
