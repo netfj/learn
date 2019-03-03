@@ -33,7 +33,7 @@ class learn():
 
             # 日志：读到的命令行
             self.debug('Line: {0}; Command: {1}'.format(i+1,item))
-            print(' '*50,i+1,'|',item)
+            # print(' '*50,i+1,'|',item)
 
             if item.replace(' ','').lower() == 'action=stop': break     # 遇stop标识时，终止进行,【标识：处理action=stop】
 
@@ -52,7 +52,6 @@ class learn():
                 lt[0] = lt[0].replace(' ', '').lower()  # 等号左边：去空格，变小写
                 lt[1] = lt[1].strip()                   # 等号右边：去两侧的空格
                 command = 'self.'+lt[0]+r'("'+lt[1]+'")'
-                print(command)
                 try:
                     eval(command)
                 except TypeError as e:
