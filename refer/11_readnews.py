@@ -19,10 +19,13 @@ def open_site(site_name):
     webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chromePath))
     webbrowser.get('chrome').open(site_name,new=1,autoraise=True)
     time.sleep(5)
+
+    # 组合键
     pyautogui.keyDown('alt')
     pyautogui.press('space')
     pyautogui.press('x')
     pyautogui.keyUp('alt')
+
     time.sleep(2)
 
 # 头条

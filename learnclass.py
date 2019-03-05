@@ -23,12 +23,13 @@ class learn():
         with open(self.runstep_name) as f:
             t = f.readlines()
             m = len(t)
+        # 逐行读取并处理
         for i in range(m):
             item = t[i].strip('\n')     # 去除尾部的换行符
             p = item.find('#')          # 求 # 所在的位置
             if p>=0 : item = item[0:p]   # 去除 # 之后的字符
             item = item.strip()         # 去除两边 空格
-            if item == '': continue     # 跳过空行
+            if item == '' or item[0]==';' : continue     # 跳过空行，以及 注释行（以分号 ; 起头）
 
             # 日志：读到的命令行
             self.debug('Line: {0}; Command: {1}'.format(i+1,item))
@@ -40,12 +41,12 @@ class learn():
             if not ('=' in item):
                 self.info(item)
 
-            # 记录信息类命令行: info = '.....'
-            if item.replace(' ','').lower()[:5] == 'info=':
-                self.info(item[item.find('=')+1:])      #执行 self.indo() , 参数：“=”右边的部分
-                continue
-
             # 分类处理命令：主要包括坐标、鼠标、键盘
+            # 例：mouse = leftclick@(x,y)
+            #     sleep = 3
+            #     action = stop
+            #     info = 'A message...'
+            #     display = 'Display in screen!'
             lt = item.split('=')  # 解析
             if len(lt)==2:
                 lt[0] = lt[0].replace(' ', '').lower()  # 等号左边：去空格，变小写
@@ -62,7 +63,6 @@ class learn():
 
     def debug(self,aru):
         logging.debug(aru)
-        # print(aru)
 
     def x(self,aru):
         self.cursor_x = int(aru)
@@ -118,7 +118,7 @@ class learn():
         if '@' in aru:
             x,y = self.cursor_x, self.cursor_y
             lt = aru.split('@')
-            cm = 'self.' + lt[0] + lt[1]
+            cm = 'self.' + lt[0] + lt[1]        # 结果示例："self.leftclick(x,y)", 或 "self.leftclick(11,22)"
             eval(cm)  # 导入 mouse 对应函数
 
     def leftclick(self, x=-9, y=-9):
