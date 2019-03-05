@@ -5,7 +5,6 @@
 def main():
     import learnclass
     learn = learnclass.learn()
-    learn.runstep_name = 'test.ini'
     learn.run()
 
 
