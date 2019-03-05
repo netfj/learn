@@ -8,7 +8,6 @@ logging.basicConfig(filename='runinfo.log',
                     level=logging.DEBUG,
                     format="【%(asctime)s】%(message)s",
                     datefmt="%m.%d.%H:%M:%S")
-
 class learn():
     cursor_x=0
     cursor_y=0
@@ -153,7 +152,7 @@ class learn():
             keyboard=Alt+F4
         '''
         aru = aru.replace(' ', '').lower()  # 去空格变小写
-        self.debug('Input: '+aru)
+        self.debug(' Input: '+aru)
         if '*' in aru:
             # 重复按
             kb = aru.split('*')
@@ -163,15 +162,20 @@ class learn():
 
         elif '+' in aru:
             # 组合键
-            kb = aru.split('+')
-            if len(kb) == 2:
-                self.debug('-->Press: {0} + {1}'.format(kb[0], kb[1]))
-                pyautogui.hotkey(kb[0],kb[1])
+            lt = aru.split('+')
+            msg = '  Press: ' + lt[0]
+            pyautogui.keyDown(lt[0])
+            for i in range(1,len(lt)):
+                msg += '+' + lt[i]
+                pyautogui.press(lt[i])
+            pyautogui.keyUp(lt[0])
+            self.debug(msg)
         else:
             self.debug('-->Press: {0}'.format(aru))
             pyautogui.press(aru)
 
     def sleep(self,aru):
+
         if aru.isdigit():
             sleeptime = int(aru)
             msg = '(Digit)'
