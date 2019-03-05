@@ -4,10 +4,7 @@
 
 import logging, time, webbrowser, random, pyautogui
 
-logging.basicConfig(filename='runinfo.log',
-                            level=logging.DEBUG,
-                            format="【%(asctime)s】%(message)s",
-                            datefmt="%m.%d.%H:%M:%S")
+
 
 class learn():
     runtime = 'Production'
@@ -18,8 +15,22 @@ class learn():
     brower_file = 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
     webbrowser_register = 'web_reg_name'
 
-    def __init__(self):
-        pass
+    def __init__(self,runstep_name = 'runstep.ini',runtime = 'Production'):
+        self.runstep_name = runstep_name
+        self.runtime = runtime
+        self.logset()
+
+    def logset(self):
+        if self.runtime == 'test':
+            logging.basicConfig(filename='runinfo.log',
+                                level=logging.DEBUG,
+                                format="【%(asctime)s】%(message)s",
+                                datefmt="%m.%d.%H:%M:%S")
+        else:
+            logging.basicConfig(filename='runinfo.log',
+                                level=logging.INFO,
+                                format="【%(asctime)s】%(message)s",
+                                datefmt="%m.%d.%H:%M:%S")
 
     def run(self):
         with open(self.runstep_name) as f:
@@ -208,8 +219,8 @@ class learn():
 
 
 if __name__ == '__main__':
-    le = learn()
-    le.runtime = 'test'
-    le.runstep_name = 'test.ini'
+    le = learn(runstep_name='test.ini',runtime='test')
+    # le.runtime = 'test'
+    # le.runstep_name = 'test.ini'
     le.demo()
     le.run()

@@ -4,7 +4,7 @@
 
 def main():
     import learnclass
-    learn = learnclass.learn()
+    learn = learnclass.learn(runtime='test')
     learn.demo()
     learn.run()
 
