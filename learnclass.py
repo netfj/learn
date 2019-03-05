@@ -5,11 +5,12 @@
 import logging, time, webbrowser, random, pyautogui
 
 logging.basicConfig(filename='runinfo.log',
-                    level=logging.DEBUG,
-                    format="【%(asctime)s】%(message)s",
-                    datefmt="%m.%d.%H:%M:%S")
+                            level=logging.DEBUG,
+                            format="【%(asctime)s】%(message)s",
+                            datefmt="%m.%d.%H:%M:%S")
+
 class learn():
-    runtime = 'production environment'
+    runtime = 'Production'
     cursor_x=0
     cursor_y=0
     runstep_name = 'runstep.ini'
@@ -66,7 +67,7 @@ class learn():
                     eval(command)
                 except TypeError as e:
                     self.info('Wrong command: '+command)
-                    self.debug(e)
+                    self.info(e)
                 else:
                     pass
         self.info('Script run finished.')
@@ -199,9 +200,16 @@ class learn():
         self.debug('  Sleep {0} seconds {1}'.format(sleeptime,msg))
         time.sleep(sleeptime)
 
+    def demo(self):
+        print('Runstep Name:',self.runstep_name)
+        print('Environment :',self.runtime)
+        print('running ...')
+        time.sleep(3)
+
 
 if __name__ == '__main__':
     le = learn()
-    le.runstep_name = 'test.ini'
     le.runtime = 'test'
+    le.runstep_name = 'test.ini'
+    le.demo()
     le.run()

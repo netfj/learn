@@ -5,6 +5,7 @@
 def main():
     import learnclass
     learn = learnclass.learn()
+    learn.demo()
     learn.run()
 
 
