@@ -21,7 +21,7 @@ class learn():
         self.logset()
 
     def logset(self):
-        if self.runtime == 'test':
+        if self.runtime.lower() == 'test':
             logging.basicConfig(filename='runinfo.log',
                                 level=logging.DEBUG,
                                 format="【%(asctime)s】%(message)s",
@@ -33,6 +33,7 @@ class learn():
                                 datefmt="%m.%d.%H:%M:%S")
 
     def run(self):
+        self.info('Script run start ...')
         with open(self.runstep_name) as f:
             t = f.readlines()
             m = len(t)
@@ -61,7 +62,7 @@ class learn():
 
             # 记录信息类命令行: 单行
             if not ('=' in item):
-                self.info(item)
+                self.debug(item)
 
             # 分类处理命令：主要包括坐标、鼠标、键盘
             # 例：mouse = leftclick@(x,y)
@@ -104,6 +105,7 @@ class learn():
 
     def info(self,aru):
         logging.info(aru.strip())       # 去空格，写入日志
+        print(aru.strip())              # 输出到屏幕
 
     def site(self, aru):
         self.debug('  Set site: '+aru)
@@ -197,7 +199,6 @@ class learn():
             pyautogui.press(aru)
 
     def sleep(self,aru):
-
         if aru.isdigit():
             sleeptime = int(aru)
             msg = '(Digit)'
@@ -214,8 +215,7 @@ class learn():
     def demo(self):
         print('Runstep Name:',self.runstep_name)
         print('Environment :',self.runtime)
-        print('running ...')
-        time.sleep(3)
+        time.sleep(1)
 
 
 if __name__ == '__main__':
