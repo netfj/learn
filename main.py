@@ -4,7 +4,7 @@
 
 def main():
     import learnclass
-    learn = learnclass.learn(runtime='test')
+    learn = learnclass.learn(runstep_name='runstep_ltc.ini',runtime = '!test',loglevel='DEBUG')
     learn.demo()
     learn.run()
 

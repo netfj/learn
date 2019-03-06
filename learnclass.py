@@ -7,6 +7,7 @@ import logging, time, webbrowser, random, pyautogui
 
 
 class learn():
+    loglevel = 'INFO'
     runtime = 'Production'
     cursor_x=0
     cursor_y=0
@@ -15,13 +16,14 @@ class learn():
     brower_file = 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
     webbrowser_register = 'web_reg_name'
 
-    def __init__(self,runstep_name = 'runstep.ini',runtime = 'Production'):
+    def __init__(self,runstep_name = 'runstep.ini',runtime = 'Production',loglevel = 'INFO'):
         self.runstep_name = runstep_name
         self.runtime = runtime
+        self.loglevel = loglevel
         self.logset()
 
     def logset(self):
-        if self.runtime.lower() == 'test':
+        if self.loglevel.upper() == 'DEBUG':
             logging.basicConfig(filename='runinfo.log',
                                 level=logging.DEBUG,
                                 format="【%(asctime)s】%(message)s",
@@ -146,6 +148,7 @@ class learn():
             eval(cm)  # 导入 mouse 对应函数
 
     def leftclick(self, x=-9, y=-9):
+        time.sleep(3)
         self.debug(' left click ...({0},{1})'.format(x,y))
         try:
             pyautogui.click(x, y, button='left')
@@ -153,7 +156,6 @@ class learn():
             self.debug(e)
         else:
             pass
-
         time.sleep(3)
 
     def rightclick(self, x=-9, y=-9):
@@ -215,6 +217,7 @@ class learn():
     def demo(self):
         print('Runstep Name:',self.runstep_name)
         print('Environment :',self.runtime)
+        print('Log Level   :',self.loglevel)
         time.sleep(1)
 
 
