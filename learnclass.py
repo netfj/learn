@@ -150,6 +150,20 @@ class learn():
             lt = aru.split('@')
             cm = 'self.' + lt[0] + lt[1]        # 结果示例："self.leftclick(x,y)", 或 "self.leftclick(11,22)"
             eval(cm)  # 导入 mouse 对应函数
+        elif 1:
+            cm = 'self.' + aru
+            eval(cm)
+
+    def scroll(self,n=0):
+        #todo
+        print(n,'#todo')
+        try:
+            pyautogui.scroll(n)
+        except TypeError as e:
+            self.debug(e)
+        else:
+            pass
+        time.sleep(3)
 
     def leftclick(self, x=-9, y=-9):
         time.sleep(3)
