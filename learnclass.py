@@ -4,8 +4,6 @@
 
 import logging, time, webbrowser, random, pyautogui
 
-
-
 class learn():
     loglevel = 'INFO'
     runtime = 'Production'
@@ -35,6 +33,12 @@ class learn():
                                 datefmt="%m.%d.%H:%M:%S")
 
     def run(self):
+
+        '''
+        读取脚本，并解析执行
+        :return: 无
+        '''
+
         self.info('Script run start ...')
         with open(self.runstep_name) as f:
             t = f.readlines()
@@ -43,7 +47,7 @@ class learn():
         for i in range(m):
             item = t[i].strip('\n')     # 去除尾部的换行符
             p = item.find('#')          # 求 # 所在的位置
-            if p>=0 : item = item[0:p]   # 去除 # 之后的字符
+            if p>=0 : item = item[0:p]   # 去除 # 之后的注释字符
             item = item.strip()         # 去除两边 空格
             if item == '' or item[0]==';' : continue     # 跳过空行，以及 注释行（以分号 ; 起头）
 
@@ -215,6 +219,7 @@ class learn():
         time.sleep(sleeptime)
 
     def demo(self):
+        # 显示运行信息
         print('Runstep Name:',self.runstep_name)
         print('Environment :',self.runtime)
         print('Log Level   :',self.loglevel)

@@ -4,7 +4,7 @@
 
 def main():
     import learnclass
-    learn = learnclass.learn(runstep_name='runstep.ini',runtime = 'test',loglevel='DEBUG')
+    learn = learnclass.learn(runstep_name='ad_xxqg01.ini',runtime = 'test',loglevel='DEBUG')
     learn.demo()
     learn.run()
 
